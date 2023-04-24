@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const { ConnectionPool } = require('mssql');
+const cors = require('cors');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -9,14 +10,17 @@ const port = process.env.PORT || 3000;
 const dbConfig = {
   user: 'sa',
   password: 'SqlServer2023*',
-  server: 'localhost',
-  database: 'companyir',
+  server: 'db',
+  database: 'company',
   options: {
-    enableArithAbort: true
+    enableArithAbort: true,
+    encrypt: true,
+    trustServerCertificate: true
   }
 };
 
 // Middleware
+app.use(cors());
 app.use(bodyParser.json());
 
 // API endpoint
@@ -41,7 +45,7 @@ app.post('/api/employees', async (req, res) => {
     res.status(201).send({ message: 'Employee created successfully' });
   } catch (error) {
     console.error(error);
-    res.status(500).send({ message: 'An error occurred while processing your request' });
+    res.status(500).send({ message: 'An error occurred while processing your request. Exception: ' + error });
   }
 });
 

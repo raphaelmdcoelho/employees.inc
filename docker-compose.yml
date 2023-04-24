@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   frontend:
-    build: ./employee-frontend
+    build: ./employee-front
     ports:
       - '80:80'
 
@@ -16,7 +16,7 @@ services:
   db:
     build: ./employee-database
     environment:
-      SA_PASSWORD: 'SqlServer2023*'
-      ACCEPT_EULA: 'Y'
+      SA_PASSWORD: "SqlServer2023*"
+      ACCEPT_EULA: "Y"
     ports:
-      - '1433:1433'
+      - "1433:1433"
