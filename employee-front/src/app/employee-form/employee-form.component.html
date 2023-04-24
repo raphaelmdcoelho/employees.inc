@@ -1,0 +1,42 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <label>
+      First Name:
+      <input type="text" formControlName="firstName">
+      <div *ngIf="form.get('firstName')?.invalid && form.get('firstName')?.touched">
+        First name is required.
+      </div>
+    </label>
+  
+    <label>
+      Last Name:
+      <input type="text" formControlName="lastName">
+      <div *ngIf="form.get('lastName')?.invalid && form.get('lastName')?.touched">
+        Last name is required.
+      </div>
+    </label>
+  
+    <label>
+      Date of Birth:
+      <input type="date" formControlName="dateOfBirth">
+      <div *ngIf="form.get('dateOfBirth')?.invalid && form.get('dateOfBirth')?.touched">
+        Date of birth is required.
+      </div>
+    </label>
+  
+    <label>
+      Gender:
+      <select formControlName="gender">
+        <option value="">Select gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
+      <div *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched">
+        Gender is required.
+      </div>
+    </label>
+  
+    <button type="submit" [disabled]="form.invalid">Submit</button>
+  
+  </form>
+  
