@@ -33,13 +33,13 @@ app.post('/api/employees', async (req, res) => {
     const request = pool.request();
     request.input('firstName', req.body.firstName);
     request.input('lastName', req.body.lastName);
-    request.input('dateOfBirth', req.body.dateOfBirth);
+    request.input('birthDate', req.body.dateOfBirth);
     request.input('gender', req.body.gender);
-    request.input('role', 1);
+    request.input('role', '00a6fa25-df29-4701-9077-557932591766');
 
     const result = await request.query(`
-      INSERT INTO employees (firstName, lastName, dateOfBirth, gender, role)
-      VALUES (@firstName, @lastName, @dateOfBirth, @gender, @role);
+      INSERT INTO employee (firstName, lastName, birthDate, gender, role)
+      VALUES (@firstName, @lastName, @birthDate, @gender, @role);
     `);
 
     res.status(201).send({ message: 'Employee created successfully' });
